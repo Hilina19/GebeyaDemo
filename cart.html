@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <main class="product-page">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href="#">Home</a> &gt; <a href="#">Kids</a> &gt; <a href="#">Shoes</a> &gt; Sneakers
+    </nav>
+
+    <div class="main-content">
+      <!-- Left Frame: Product Details -->
+      <div class="left-frame">
+        <div class="product-images">
+          <img src="pictures/pinkshoes.png" alt="Burberry Shine" class="main-image">
+          <div class="thumbnails">
+            <img src="pictures/Pink1.png" alt="Thumbnail 1">
+            <img src="pictures/pink2.png" alt="Thumbnail 2">
+            <img src="pictures/pink3.png" alt="Thumbnail 3">
+          </div>
+        </div>
+
+        <div class="product-info">
+          <p class="price">$150 <span class="original-price">$300</span> <span class="discount">50% OFF</span></p>
+          <div class="quantity">
+            <label for="quantity">Quantity:</label>
+            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+            <input id="quantity" type="number" value="1" min="1">
+            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+          </div>
+          <div class="size-selection">
+            <label for="size">Size:</label>
+            <select id="size">
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="35">35</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button class="save-for-later-btn" onclick="saveForLater()">Save for later</button>
+            <button class="buy-now-btn" onclick="redirectToCheckout()">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Frame: Delivery & Returns -->
+      <div class="right-frame">
+        <section class="delivery-returns">
+          <h3>Delivery & Returns</h3>
+          <form>
+            <label for="location">Location</label>
+            <select id="location">
+              <option value="location-1">Location 1</option>
+              <option value="location-2">Location 2</option>
+            </select>
+            <label for="sub-location">Sub-location</label>
+            <select id="sub-location">
+              <option value="sub-location-1">Sub-location 1</option>
+              <option value="sub-location-2">Sub-location 2</option>
+            </select>
+          </form>
+          <p>
+            <b>Delivery</b> <br>
+            Estimated delivery time: 1-2 business days<Br> for Same-Day-Delivery: please place your<br> order before 12pm<br>
+            Next-Day Delivery: Orders placed by 12pm <br>will be delivered the next day.
+            Note: Availability mat vary by location <bR>
+           <b>Return policy</b><br>
+            Guaranteed 7-day return policy<br> For details about return shipping options,<br>please visit our contact page.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <!-- Additional Info Section -->
+    <section class="additional-info">
+      <div class="info-buttons">
+        <button class="info-btn" onclick="toggleInfo('overview')">Overview</button>
+        <button class="info-btn" onclick="toggleInfo('description')">Description</button>
+        <button class="info-btn" onclick="toggleInfo('warranty')">Warranty</button>
+        <button class="info-btn" onclick="toggleInfo('reviews')">Reviews</button>
+      </div>
+      <div class="info-content">
+        <div id="overview" class="info-section" style="display:none;">
+          <ul>
+            <li> Available in a waide range of colors, patterns, and pthems to appeal to kids.</li>
+            <li>Rubber outsoles with good traction to prevent slips and fails </li>
+            <li>Built-in arch support to help maintain healthy foot development </li>
+            <li>soft insoles and adequate padding to support growing feet.</li>
+          </ul>
+        </div>
+        <div id="description" class="info-section" style="display:none;">
+          <p>The product features a soft insole and high-quality rubber outsoles...</p>
+        </div>
+        <div id="warranty" class="info-section" style="display:none;">
+          <p>This product comes with a 1-year warranty against manufacturing defects...</p>
+        </div>
+        <div id="reviews" class="info-section" style="display:none;">
+          <p><strong>John Doe</strong> - ★★★★☆</p>
+          <p>Great product, fits well and is comfortable for my child...</p>
+        </div>
+      </div>
+
+      <section class="similar-items">
+        <h3>Similar Items You May Like</h3>
+        <div class="similar-products">
+          <div class="product-card">
+            <img src="pictures/blueshoes.png" alt="Butlin Blue">
+            <p class="product-name">Butlin Blue</p>
+            <p class="price">$120</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+          <div class="product-card">
+            <img src="pictures/pinkcheery.png" alt="Pink Cherry">
+            <p class="product-name">Pink Cherry</p>
+            <p class="price">$180</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    // JavaScript to load header and footer
+    function loadHeader() {
+      fetch('header.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('header-placeholder').innerHTML = data)
+        .catch(error => console.error('Error loading header:', error));
+    }
+
+    function loadFooter() {
+      fetch('footer.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('footer-placeholder').innerHTML = data)
+        .catch(error => console.error('Error loading footer:', error));
+    }
+
+    // Call the functions to load header and footer on page load
+    window.onload = function() {
+      loadHeader();
+      loadFooter();
+    };
+
+    function toggleInfo(section) {
+      const sections = ['overview', 'description', 'warranty', 'reviews'];
+      sections.forEach(sec => {
+        const element = document.getElementById(sec);
+        if (sec === section) {
+          element.style.display = (element.style.display === 'block') ? 'none' : 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      });
+    }
+
+    function increaseQuantity() {
+      const quantityInput = document.getElementById("quantity");
+      quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+
+    function decreaseQuantity() {
+      const quantityInput = document.getElementById("quantity");
+      if (quantityInput.value > 1) {
+        quantityInput.value = parseInt(quantityInput.value) - 1;
+      }
+    }
+
+    function redirectToCheckout() {
+      window.location.href = "checkout.html";
+    }
+
+    function saveForLater() {
+      alert("Product saved for later!");
+    }
+  </script>
+</body>
+</html>
